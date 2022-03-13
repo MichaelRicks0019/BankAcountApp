@@ -36,7 +36,7 @@ namespace BankAcountApp
         {
             if (credit < 0)
             {
-                throw new ArgumentOutOfRangeException($"{nameof(credit)} must be greater than 0");
+                throw new ArgumentOutOfRangeException(nameof(credit), credit, $"{nameof(credit)} must be greater than 0");
             }
             AccountBalance += credit;
             return true;
@@ -46,10 +46,15 @@ namespace BankAcountApp
         {
             if (AccountBalance - debit < 0)
             {
-                throw new Exception($"{nameof(debit)} Debit amount exceeded account balance" )
+                throw new Exception($"{nameof(debit)} Debit amount exceeded account balance");
             }
             AccountBalance -= debit;
             return true;
+        }
+
+        public override string ToString()
+        {
+            return $"AccountBalance: {AccountBalance}";
         }
     }
 }
